@@ -1,36 +1,24 @@
 version: "3"
 services:
-  wwx_nuaco:
+  nuaco:
     image: 'abiosoft/caddy'
     labels:
-      - "traefik.backend=wwx_nuaco"
+      - "traefik.backend=nuaco"
       - "traefik.frontend.rule=Host:www.nua.co,nua.co"
       - "traefik.docker.network=proxy"
       - "traefik.port=2015"
       - "traefik.port=443"
-    volumes:
-      - ./Caddyfile:/etc/Caddyfile
-      - ./nuaco:/srv/webapp/current/public
-      - ./.caddy:/etc/caddycerts
-    environment:
-      - CADDYPATH=/etc/caddycerts
-    ports:
-      - "80:80"
-      - "443:443"
-    networks:
-      - internal
-      - proxy
-  wwx_c2ostudio:
+  c2ostudio:
     image: 'abiosoft/caddy'
     labels:
-      - "traefik.backend=wwx_c2ostudio"
+      - "traefik.backend=c2ostudio"
       - "traefik.frontend.rule=Host:www.c2o.studio,c2o.studio"
       - "traefik.docker.network=proxy"
       - "traefik.port=2015"
       - "traefik.port=443"
     volumes:
       - ./Caddyfile:/etc/Caddyfile
-      - ./c2ostudio:/srv/webapp/current/public
+      - ./nuaco:/srv/webapp/current/public
       - ./.caddy:/etc/caddycerts
     environment:
       - CADDYPATH=/etc/caddycerts
