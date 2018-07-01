@@ -1,5 +1,16 @@
 version: "3"
+
 services:
+  reverse-proxy:
+    image: traefik #The official Traefik docker image
+    command: --api --docker #Enables the web UI and tells Træfik to listen to docker
+    ports:
+      - "80:80"     #The HTTP port
+      - "8080:8080" #The Web UI (enabled by --api)
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock #So that Traefik can listen to the Docker events
+
   nuaco:
     image: 'abiosoft/caddy'
     labels:
@@ -8,6 +19,16 @@ services:
       - "traefik.docker.network=proxy"
       - "traefik.port=2015"
       - "traefik.port=443"
+    volumes:
+      - ./Caddyfile:/etc/Caddyfile
+      - ./nuaco:/srv/webapp/current/public
+      - ./.caddy:/etc/caddycerts
+    environment:
+      - CADDYPATH=/etc/caddycerts
+    networks:
+      - internal
+      - proxy
+
   c2ostudio:
     image: 'abiosoft/caddy'
     labels:
@@ -18,16 +39,14 @@ services:
       - "traefik.port=443"
     volumes:
       - ./Caddyfile:/etc/Caddyfile
-      - ./nuaco:/srv/webapp/current/public
+      - ./c2ostudio:/srv/webapp/current/public
       - ./.caddy:/etc/caddycerts
     environment:
       - CADDYPATH=/etc/caddycerts
-    ports:
-      - "80:80"
-      - "443:443"
     networks:
       - internal
       - proxy
+
 networks:
   proxy:
     external: true
