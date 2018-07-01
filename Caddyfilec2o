@@ -1,0 +1,3 @@
+nua.co, www.nua.co {
+    root /srv/webapp/current/public
+}
