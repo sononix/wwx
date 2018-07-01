@@ -1,0 +1,27 @@
+version: "3"
+services:
+  caddy:
+    image: 'abiosoft/caddy'
+    # labels:
+    #   - "traefik.backend=caddy"
+    #   - "traefik.frontend.rule=Host:www.nua.co,nua.co"
+    #   - "traefik.docker.network=proxy"
+    #   - "traefik.port=2015"
+    #   - "traefik.port=443"
+    volumes:
+      - ./Caddyfile:/etc/Caddyfile
+      - ./nuaco:/srv/webapp/current/public
+      - ./.caddy:/etc/caddycerts
+    environment:
+      - CADDYPATH=/etc/caddycerts
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - internal
+      - proxy
+networks:
+  proxy:
+    external: true
+  internal:
+    external: false
