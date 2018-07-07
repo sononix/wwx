@@ -1,100 +1,54 @@
 ################################################################
 # Global configuration
 ################################################################
-
-# Enable debug mode
-#
-# Optional
-# Default: false
-#
-# debug = true
-
-# Log level
-#
-# Optional
-# Default: "ERROR"
-#
-
+logLevel = "DEBUG"
 
 # Entrypoints to be used by frontends that do not specify any entrypoint.
 # Each frontend can specify its own entrypoints.
-#
-# Optional
-# Default: ["http"]
-#
-debug = true
-checkNewVersion = true
-logLevel = "ERROR"
+defaultEntryPoints = ["http", "https"]
 
- [entryPoints.http]
- address = ":80"
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+  [entryPoints.http.redirect]
+    entryPoint = "https"
+  [entryPoints.https]
+  address = ":443"
+    [entryPoints.https.tls]
 
-[retry]
+################################################################
+# ACME (Let's Encrypt): automatic SSL
+################################################################
+[acme]
+email = "jensole@graulund.net"
+storageFile = "/etc/traefik/acme/acme.json"
+entryPoint = "https"
+onDemand = true
+caServer = "https://acme-staging.api.letsencrypt.org/directory"
 
+[[acme.domains]]
+  main = "52.49.74.172"
+
+################################################################
+# Web configuration backend
+################################################################
+[web]
+address = ":8080"
+
+################################################################
+# Docker configuration backend
+################################################################
 [docker]
+
+# Docker server endpoint. Can be a tcp or a unix socket endpoint.
 endpoint = "unix:///var/run/docker.sock"
+
+# Default domain used.
+# Can be overridden by setting the "traefik.domain" label on a container.
 domain = "nua.media"
+
+# Enable watch docker changes
 watch = true
-
-# [acme]
-# email = "martin@nua.co"
-# storageFile = "acme/acme.json"
-# entryPoint = "https"
-# OnHostRule = true
-#
-# [acme.httpChallenge]
-#
-#   # EntryPoint to use for the HTTP-01 challenges.
-#   #
-#   # Required
-#   #
-#   entryPoint = "http"
-#
-
-# Traefik logs
-# Enabled by default and log to stdout
-#
-# Optional
-#
-# [traefikLog]
-
-# Sets the filepath for the traefik log. If not specified, stdout will be used.
-# Intermediate directories are created if necessary.
-#
-# Optional
-# Default: os.Stdout
-#
-# filePath = "log/traefik.log"
-
-# Format is either "json" or "common".
-#
-# Optional
-# Default: "common"
-#
-# format = "common"
-
-# Enable access logs
-# By default it will write to stdout and produce logs in the textual
-# Common Log Format (CLF), extended with additional fields.
-#
-# Optional
-#
-# [accessLog]
-accessLogsFile = "/dev/stdout"
-# Sets the file path for the access log. If not specified, stdout will be used.
-# Intermediate directories are created if necessary.
-#
-# Optional
-# Default: os.Stdout
-#
-# filePath = "/path/to/log/log.txt"
-
-# Format is either "json" or "common".
-#
-# Optional
-# Default: "common"
-#
-# format = "common"
 
 ################################################################
 # Web configuration backend
@@ -103,10 +57,6 @@ accessLogsFile = "/dev/stdout"
 # Enable web configuration backend
 [web]
 
-# Web administration port
-#
-# Required
-#
 address = ":8080"
 
 ################################################################
