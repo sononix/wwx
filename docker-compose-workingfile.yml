@@ -9,7 +9,7 @@ services:
       - "traefik.port=2015"
     volumes:
       # - ./Caddyfile:/etc/Caddyfile
-      - ./nuaco:/srv/webapp/current/public
+      - ./nuaco:/srv
     networks:
       - internal
       - proxy

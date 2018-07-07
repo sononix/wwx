@@ -21,7 +21,7 @@ services:
       - "traefik.port=443"
     volumes:
       - ./Caddyfile:/etc/Caddyfile
-      - ./nuaco:/srv/webapp/current/public
+      - ./nuaco:/srv
       - ./.caddy:/etc/caddycerts
     environment:
       - CADDYPATH=/etc/caddycerts
@@ -39,7 +39,7 @@ services:
       - "traefik.port=443"
     volumes:
       - ./Caddyfilec2o:/etc/Caddyfile
-      - ./c2ostudio:/srv/webapp/current/public
+      - ./c2ostudio:/srv
       - ./.caddy:/etc/caddycerts
     environment:
       - CADDYPATH=/etc/caddycerts
