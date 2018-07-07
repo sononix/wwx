@@ -22,16 +22,12 @@
 # Optional
 # Default: ["http"]
 #
-debug = false
+debug = true
 checkNewVersion = true
 logLevel = "ERROR"
 
-
-defaultEntryPoints = ["http"]
-[entryPoints]
-  [entryPoints.http]
-  address = ":80"
-
+ [entryPoints.http]
+ address = ":80"
 
 [retry]
 
@@ -40,20 +36,20 @@ endpoint = "unix:///var/run/docker.sock"
 domain = "nua.co"
 watch = true
 
-[acme]
-email = "martin@nua.co"
-storageFile = "acme/acme.json"
-entryPoint = "https"
-OnHostRule = true
-
-[acme.httpChallenge]
-
-  # EntryPoint to use for the HTTP-01 challenges.
-  #
-  # Required
-  #
-  entryPoint = "http"
-
+# [acme]
+# email = "martin@nua.co"
+# storageFile = "acme/acme.json"
+# entryPoint = "https"
+# OnHostRule = true
+#
+# [acme.httpChallenge]
+#
+#   # EntryPoint to use for the HTTP-01 challenges.
+#   #
+#   # Required
+#   #
+#   entryPoint = "http"
+#
 
 # Traefik logs
 # Enabled by default and log to stdout
@@ -84,7 +80,7 @@ OnHostRule = true
 # Optional
 #
 # [accessLog]
-
+accessLogsFile = "/dev/stdout"
 # Sets the file path for the access log. If not specified, stdout will be used.
 # Intermediate directories are created if necessary.
 #
