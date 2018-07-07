@@ -20,7 +20,7 @@ defaultEntryPoints = ["http", "https"]
 # ACME (Let's Encrypt): automatic SSL
 ################################################################
 [acme]
-email = "jensole@graulund.net"
+email = "jensole@nua.media"
 storageFile = "/etc/traefik/acme/acme.json"
 entryPoint = "https"
 onDemand = true
