@@ -115,6 +115,10 @@ address = ":8080"
 
 [frontends]
   [frontends.frontend1]
-  backend = "caddy"
+  backend = "nuaco"
     [frontends.frontend1.routes.test_1]
-    rule = "Host:www.nua.media,nua.media"
+    rule = "Host:www.nua.co,nua.co"
+[frontends.frontend2]
+  backend = "c2ostudio"
+    [frontends.frontend2.routes.test_2]
+    rule = "Host:www.c2o.studio,c2o.studio"
