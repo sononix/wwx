@@ -113,4 +113,4 @@ address = ":8080"
   [frontends.frontend1]
   backend = "caddy"
     [frontends.frontend1.routes.test_1]
-    rule = "Host:www.nua.media,nua.media"
+    rule = "Host:www.nua.co,nua.co"
