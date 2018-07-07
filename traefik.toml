@@ -37,11 +37,11 @@ defaultEntryPoints = ["http"]
 
 [docker]
 endpoint = "unix:///var/run/docker.sock"
-domain = "nua.media"
+domain = "nua.co"
 watch = true
 
 [acme]
-email = "admin@nua.media"
+email = "martin@nua.co"
 storageFile = "/etc/traefik/acme/acme.json"
 entryPoint = "http"
 OnHostRule = true
