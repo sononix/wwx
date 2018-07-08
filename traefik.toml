@@ -25,10 +25,10 @@ Storage = "acme.json"
 entryPoint = "https"
 onHostRule = true
 onDemand = false
-caServer = "https://acme-staging.api.letsencrypt.org/directory"
-
-[[acme.domains]]
-  main = "nua.media"
+caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
+entryPoint = "https"
+  [acme.httpChallenge]
+  entryPoint = "http"
 
 ################################################################
 # Web configuration backend
