@@ -20,7 +20,7 @@ defaultEntryPoints = ["http", "https"]
 # ACME (Let's Encrypt): automatic SSL
 ################################################################
 [acme]
-email = "jensole@nua.media"
+email = "admin@nua.co"
 Storage = "acme.json"
 entryPoint = "https"
 onHostRule = true
