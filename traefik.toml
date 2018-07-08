@@ -21,7 +21,7 @@ defaultEntryPoints = ["http", "https"]
 ################################################################
 [acme]
 email = "jensole@nua.media"
-storageFile = "acme.json"
+Storage = "acme.json"
 entryPoint = "https"
 onHostRule = true
 onDemand = false
