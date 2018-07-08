@@ -20,7 +20,7 @@ defaultEntryPoints = ["http", "https"]
 # ACME (Let's Encrypt): automatic SSL
 ################################################################
 [acme]
-email = "admin@nua.co"
+email = "admin@nua.media"
 Storage = "acme.json"
 entryPoint = "https"
 onHostRule = true
@@ -28,7 +28,7 @@ onDemand = false
 caServer = "https://acme-staging.api.letsencrypt.org/directory"
 
 [[acme.domains]]
-  main = "nua.co"
+  main = "nua.media"
 
 ################################################################
 # Web configuration backend
@@ -65,12 +65,12 @@ watch = true
 # Docker configuration backend
 ################################################################
 
-# [frontends]
-#   [frontends.frontend1]
-#   backend = "nuaco"
-#     [frontends.frontend1.routes.test_1]
-#     rule = "Host:www.nua.co,nua.co"
-# [frontends.frontend2]
-#   backend = "c2ostudio"
-#     [frontends.frontend2.routes.test_2]
-#     rule = "Host:www.c2o.studio,c2o.studio"
+[frontends]
+  [frontends.frontend1]
+  backend = "nuaco"
+    [frontends.frontend1.routes.test_1]
+    rule = "Host:www.nua.co,nua.co"
+[frontends.frontend2]
+  backend = "c2ostudio"
+    [frontends.frontend2.routes.test_2]
+    rule = "Host:www.c2o.studio,c2o.studio"
