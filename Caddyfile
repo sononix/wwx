@@ -1,4 +1,5 @@
+nua.co, www.nua.co
 tls martin@nua.co
-nua.co, www.nua.co {
+{
     root /srv
 }
