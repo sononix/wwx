@@ -1,3 +1,7 @@
 nua.co, www.nua.co {
     root /srv
 }
+
+tls {
+    dns godaddy
+}
