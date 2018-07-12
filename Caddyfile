@@ -1,6 +1,6 @@
 nua.co, www.nua.co {
     root /srv
-    tls martin@nua.co {
-      dns <godaddy>
+    tls {
+    dns godaddy
     }
 }
