@@ -4,7 +4,7 @@
 FROM abiosoft/caddy:builder as builder
 
 ARG version="0.11.0"
-ARG plugins="git,filemanager,cors,realip,expires,cache,godaddy"
+ARG plugins="git,filemanager,cors,realip,expires,cache,tls.dns.godaddy"
 
 # process wrapper
 RUN go get -v github.com/abiosoft/parent
